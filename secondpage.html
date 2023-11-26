@@ -7,10 +7,44 @@
 </head>
 <body>
 
-    <h2>Useful images</h2>
+    <h2>Useful images and videos</h2>
 
     <img src="Screenshot 2023-11-26 143324.png" alt="Log stuff">
     <img src="change-of-base-formula.png" alt="Log stuff">
+     <div id="video-container">
+        <!-- Replace 'your-video-id' with the actual YouTube video ID -->
+        <div id="player" data-youtube-id="https://www.youtube.com/watch?v=kqVpPSzkTYA"></div>
+    </div>
+
+    <script>
+        function onYouTubeIframeAPIReady() {
+            // Replace 'your-api-key' with your actual YouTube API key
+            var apiKey = 'AIzaSyD7nuc531_18iXeMQYpp3Crx9Kb-1-g5_U';
+            var player;
+
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: document.getElementById('player').getAttribute('data-youtube-id'),
+                playerVars: {
+                    'origin': window.location.origin,
+                    'enablejsapi': 1
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+
+            function onPlayerReady(event) {
+                document.getElementById('video-container').addEventListener('click', function () {
+                    event.target.playVideo();
+                });
+            }
+        }
+    </script>
+
+    <!-- Load YouTube Iframe API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 
 </body>
 </html>
